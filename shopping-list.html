@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping list example</title>
+  <style>
+    li {
+      margin-bottom: 10px;
+    }
+
+    li button {
+      font-size: 8px;
+      margin-left: 20px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>My shopping list</h1>
+
+  <div>
+    <label for="item">Enter a new item:</label>
+    <input type="text" name="item" id="item">
+    <button id="addItem">Add item</button>
+  </div>
+
+  <ul id="listOfItems">
+
+  </ul>
+
+  <script>
+    //Step One, Declare variables
+    var ulVariable = document.getElementById('listOfItems');
+    var inputVariable = document.getElementById('item');
+    var buttonVariable = document.getElementById('addItem');
+
+    //Step two, add a function that runs when the button is clicked
+    buttonVariable.addEventListener("click",  () => {
+      //Step three save the value of the input into a variable
+      var inputValue = inputVariable.value;
+      console.log(inputValue)
+
+      //Step four, empty the input value by setting it to an empty string
+      inputVariable.value = "";
+
+      //Step five, create three new elements and store them in variables
+      var liItem = document.createElement("li");
+      var spanVariable = document.createElement("span");
+      var deleteButtonVariable = document.createElement("button");
+
+      //Step six, append the span and button as children of the li
+      liItem.appendChild(spanVariable);
+      liItem.appendChild(deleteButtonVariable);
+
+      //Step seven, set the text content of the span to the input and the button to say delete
+      spanVariable.textContent = inputValue;
+      deleteButtonVariable.textContent = "delete";
+
+      //Step eight, append the li as a child of the ul
+      ulVariable.appendChild(liItem);
+
+      //Step nine, attach an event handler to the delete button so that it deletes the entire li
+      deleteButtonVariable.addEventListener("click", () => {
+        liItem.remove();
+      });
+
+
+    });
+
+    //Step ten, use the focus() method on the input to focus it
+    inputVariable.focus();
+
+  </script>
+</body>
+
+</html>
